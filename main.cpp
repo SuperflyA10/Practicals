@@ -1,35 +1,62 @@
+// Aluwani Nesengani
+// Student NO: 220162015
+// CSC1A Practical 2
+
 #include <iostream>
-#include <iomanip>
 
 using namespace std;
 
 int main()
 {
-     const int Jan_ = 83, Feb_ = 12, Mar_ = 33, Apr_ = 49, May_ = 76, Jun_ = 52, Jul_ = 58,
-               Aug_ = 14, Sep_ = 29, Oct_ = 91, Nov_ = 5, Dec_ = 100;
+    string temp;
+    int option;
 
-     const double NumOfMonths = 12.0; // Number of months in a year.
+    // User intput interface for the options.
+    cout << "Enter 1 for option 1 or 2 for option 2:" << endl;
+    cin >> option;
 
-     const string Month_1 = "Jan", Month_2 = "Feb", Month_3 = "Mar", Month_4 = "Apr", Month_5 = "May", Month_6 = "Jun",
-                  Month_7 = "Jul", Month_8 = "Aug", Month_9 = "Sep", Month_10 = "Oct", Month_11 = "Nov", Month_12 = "Dec";
+    switch (option)
+    {
+    case 1: // Option 1
+        // User intput interface for the scores
+        int score;
+        cout << "Enter accuracy score of a machine learning model: " << endl;
+        cin >> score;
 
-     double Ave_rev_rands = ((Jan_ + Feb_ + Mar_ + Apr_ + May_ + Jun_ + Jul_ + Aug_ + Sep_ + Oct_ + Nov_ + Dec_) / static_cast<double>(NumOfMonths));
+        // If statements checking which interval the accuracy score is found and, output the corresponding text.
+        if ((score > 0) & (score < 50))
+            cout << "Low accuracy! Consider retraining model. " << endl;
+        else if ((score >= 50) & (score < 70))
+            cout << "Moderate accuracy! Room for improvement. " << endl;
+        else if ((score >= 70) & (score < 90))
+            cout << "Good accuracy! Your model is performing well. " << endl;
+        else if ((score >= 90) & (score <= 100))
+            cout << "Excellent accuracy! Well done. " << endl;
+        else
+            cout << "Invalid accuracy score!! " << endl;
+        break;
 
-     const float Conv_factor = 0.053;
-     double Ave_rev_dollar = Conv_factor * Ave_rev_rands;
+    case 2:
+        // User intput interface for the Number of VPL exrcises completed.
+        int numOfVpl;
+        cout << "Enter the number of VPL exercises completed: " << endl;
+        cin >> numOfVpl;
 
-     cout << Month_1 << "\t" << Month_2 << "\t" << Month_3 << "\t" << Month_4 << "\t" << Month_5 << "\t" << Month_6 << "\t"
-          << Month_7 << "\t" << Month_8 << "\t" << Month_9 << " \t" << Month_10 << "\t" << Month_11 << "\t" << Month_12 << endl;
+        // check if the user entered a valid number of VPL exercises.
+        if (cin.fail() || numOfVpl < 0)
+            // Invalid number of VPL exercises or input.
+            cout << "Invalid number of VPL exercises!" << endl;
+        else
+        {
+            // valid user input or number of VPL exercises, conditional operator checks for the number of VPL exercises completed
+            temp = (numOfVpl < 5) ? "The more VPL exercises you successfully complete, the higher your chances of obtaining a perfect final mark." : "Keep it up.";
+            cout << temp << endl;
+        }
+        break;
 
-     cout << Jan_ << "\t" << Feb_ << "\t" << Mar_ << "\t" << Apr_ << "\t" << May_ << "\t" << Jun_ << "\t"
-          << Jul_ << "\t" << Aug_ << "\t" << Sep_ << "\t" << Oct_ << "\t" << Nov_ << "\t" << Dec_ << endl;
-     cout << endl;
-
-
-     cout << "Average revenue(in rands) = " << Ave_rev_rands << " million rands" << endl;
-     cout << endl;
-     cout << "Average revenue(in dollars) = " << Ave_rev_dollar << " million dollars" << endl;
-     cout << endl;
-
-     return 0;
+    default:
+        // invalid selection of options
+        cout << "User entered invalid option!!" << endl;
+        break;
+    }
 }
